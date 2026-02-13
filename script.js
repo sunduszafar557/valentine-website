@@ -1,24 +1,5 @@
 
 window.addEventListener("DOMContentLoaded", function () {
-    const bgMusic = document.getElementById("bgMusic");
-
-function playMusicOnce() {
-    if(bgMusic){
-        bgMusic.play().catch(() => console.log("Autoplay blocked, music will start on click"));
-    }
-}
-
-// Trigger music when user clicks YES or Open My Heart
-const yesBtn = document.getElementById("yesBtn");
-const surpriseBtn = document.getElementById("surpriseBtn");
-
-if(yesBtn){
-    yesBtn.addEventListener("click", playMusicOnce);
-}
-
-if(surpriseBtn){
-    surpriseBtn.addEventListener("click", playMusicOnce);
-}
 
 
     // ===== Open My Heart button =====
@@ -29,7 +10,6 @@ if(surpriseBtn){
         surpriseBtn.onclick = function () {
             hiddenMessage.style.display = "block";
         };
-    }
 
     // ===== YES button with multiple love lines =====
     const yesBtn = document.getElementById("yesBtn");
@@ -114,6 +94,7 @@ if(surpriseBtn){
     setInterval(createHeart, 500); // one heart every 0.5s
 
 });
+
 
 
 
