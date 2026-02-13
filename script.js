@@ -1,27 +1,27 @@
-window.onload = function() {
+window.addEventListener("DOMContentLoaded", function () {
 
     // YES button
     const yesBtn = document.getElementById("yesBtn");
     const yesMessage = document.getElementById("yesMessage");
 
     if (yesBtn && yesMessage) {
-        yesBtn.addEventListener("click", function() {
+        yesBtn.onclick = function () {
             yesMessage.style.display = "block";
-        });
+        };
     }
 
-    // NO button movement
+    // NO button
     const noBtn = document.getElementById("noBtn");
 
     if (noBtn) {
-        noBtn.addEventListener("mouseover", function() {
-            const randomX = Math.floor(Math.random() * window.innerWidth);
-            const randomY = Math.floor(Math.random() * window.innerHeight);
+        noBtn.onmouseover = function () {
             this.style.position = "absolute";
-            this.style.left = randomX + "px";
-            this.style.top = randomY + "px";
-        });
+            this.style.left = Math.random() * 80 + "%";
+            this.style.top = Math.random() * 80 + "%";
+        };
     }
 
-};
+});
+
+
 
