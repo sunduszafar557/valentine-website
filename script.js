@@ -1,5 +1,25 @@
 
 window.addEventListener("DOMContentLoaded", function () {
+    const bgMusic = document.getElementById("bgMusic");
+
+function playMusicOnce() {
+    if(bgMusic){
+        bgMusic.play().catch(() => console.log("Autoplay blocked, music will start on click"));
+    }
+}
+
+// Trigger music when user clicks YES or Open My Heart
+const yesBtn = document.getElementById("yesBtn");
+const surpriseBtn = document.getElementById("surpriseBtn");
+
+if(yesBtn){
+    yesBtn.addEventListener("click", playMusicOnce);
+}
+
+if(surpriseBtn){
+    surpriseBtn.addEventListener("click", playMusicOnce);
+}
+
 
     // ===== Open My Heart button =====
     const surpriseBtn = document.getElementById("surpriseBtn");
@@ -94,6 +114,7 @@ window.addEventListener("DOMContentLoaded", function () {
     setInterval(createHeart, 500); // one heart every 0.5s
 
 });
+
 
 
 
