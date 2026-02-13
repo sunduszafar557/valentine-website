@@ -1,6 +1,18 @@
-
 window.addEventListener("DOMContentLoaded", function () {
 
+    // ===== Background music =====
+    const bgMusic = document.getElementById("bgMusic");
+    function startMusic() {
+        if (bgMusic) {
+            bgMusic.play().catch(() => console.log("Music blocked until user interaction"));
+        }
+    }
+
+    // Play music on first click anywhere
+    document.addEventListener("click", function playOnce() {
+        startMusic();
+        document.removeEventListener("click", playOnce);
+    });
 
     // ===== Open My Heart button =====
     const surpriseBtn = document.getElementById("surpriseBtn");
@@ -10,8 +22,9 @@ window.addEventListener("DOMContentLoaded", function () {
         surpriseBtn.onclick = function () {
             hiddenMessage.style.display = "block";
         };
+    }
 
-    // ===== YES button with multiple love lines =====
+    // ===== YES button multiple love lines =====
     const yesBtn = document.getElementById("yesBtn");
     const loveMessages = document.getElementById("loveMessages");
     const nextLineBtn = document.getElementById("nextLineBtn");
@@ -28,8 +41,8 @@ window.addEventListener("DOMContentLoaded", function () {
             lines[currentLineIndex].style.display = "block";
             nextLineBtn.style.display = "inline-block";
 
-            // optional: heart explosion when YES clicked
-            for (let i = 0; i < 50; i++) {
+            // small heart explosion
+            for (let i = 0; i < 20; i++) {
                 createHeart();
             }
         };
@@ -63,8 +76,10 @@ window.addEventListener("DOMContentLoaded", function () {
             slides[i].style.display = "none";
         }
         slideIndex++;
-        if (slideIndex > slides.length) { slideIndex = 1; }
-        if(slides[slideIndex-1]) slides[slideIndex-1].style.display = "block";
+        if (slides.length > 0) {
+            if (slideIndex > slides.length) { slideIndex = 1; }
+            slides[slideIndex - 1].style.display = "block";
+        }
         setTimeout(showSlides, 3000);
     }
     showSlides();
@@ -90,16 +105,6 @@ window.addEventListener("DOMContentLoaded", function () {
             }
         }, 20);
     }
-
-    setInterval(createHeart, 500); // one heart every 0.5s
+    setInterval(createHeart, 500);
 
 });
-
-
-
-
-
-
-
-
-
