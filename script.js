@@ -1,6 +1,7 @@
+
 window.addEventListener("DOMContentLoaded", function () {
 
-    // Open My Heart button
+    // ===== Open My Heart button =====
     const surpriseBtn = document.getElementById("surpriseBtn");
     const hiddenMessage = document.getElementById("hiddenMessage");
 
@@ -10,7 +11,7 @@ window.addEventListener("DOMContentLoaded", function () {
         };
     }
 
-    // YES button love lines (if you want multiple lines)
+    // ===== YES button with multiple love lines =====
     const yesBtn = document.getElementById("yesBtn");
     const loveMessages = document.getElementById("loveMessages");
     const nextLineBtn = document.getElementById("nextLineBtn");
@@ -26,6 +27,11 @@ window.addEventListener("DOMContentLoaded", function () {
             lines.forEach(line => line.style.display = "none");
             lines[currentLineIndex].style.display = "block";
             nextLineBtn.style.display = "inline-block";
+
+            // optional: heart explosion when YES clicked
+            for (let i = 0; i < 50; i++) {
+                createHeart();
+            }
         };
 
         nextLineBtn.onclick = function () {
@@ -39,7 +45,7 @@ window.addEventListener("DOMContentLoaded", function () {
         };
     }
 
-    // NO button movement
+    // ===== NO button movement =====
     const noBtn = document.getElementById("noBtn");
     if (noBtn) {
         noBtn.onmouseover = function () {
@@ -49,7 +55,46 @@ window.addEventListener("DOMContentLoaded", function () {
         };
     }
 
+    // ===== Slideshow =====
+    let slideIndex = 0;
+    function showSlides() {
+        const slides = document.getElementsByClassName("mySlides");
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1; }
+        if(slides[slideIndex-1]) slides[slideIndex-1].style.display = "block";
+        setTimeout(showSlides, 3000);
+    }
+    showSlides();
+
+    // ===== Floating hearts =====
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.style.position = "absolute";
+        heart.style.fontSize = Math.random() * 30 + 10 + "px";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = "-50px";
+        heart.style.zIndex = 1000;
+        document.body.appendChild(heart);
+
+        let top = -50;
+        const interval = setInterval(() => {
+            top += 2;
+            heart.style.top = top + "px";
+            if (top > window.innerHeight) {
+                heart.remove();
+                clearInterval(interval);
+            }
+        }, 20);
+    }
+
+    setInterval(createHeart, 500); // one heart every 0.5s
+
 });
+
 
 
 
