@@ -47,5 +47,8 @@ this.style.top = randomY + "px";
 
 // YES Button
 document.getElementById("yesBtn").addEventListener("click", function() {
-alert("Yayyy 🧸💕 I love you so much, my Bhalu!");
+    document.getElementById("yesMessage").style.display = "block";
+});
+
+
 });
